@@ -1,12 +1,13 @@
 package com.nitesh.trackmymedia.trackable;
 
-public class Anime extends MediaItem{
+public class Series extends MediaItem{
     private Integer season;
 
-
-    public Anime(String title, Integer season, int totalEpisode, int currentEpisode) {
-        super (title, totalEpisode, currentEpisode);
+    public Series (String title, Integer season, int totalProgress, int currentProgress) {
+        super(title, totalProgress, currentProgress);
         this.season = season;
+
+
     }
 
     @Override
@@ -18,5 +19,5 @@ public class Anime extends MediaItem{
 
         }
     }
-
+    
 }
