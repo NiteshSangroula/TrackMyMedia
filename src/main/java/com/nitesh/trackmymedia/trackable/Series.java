@@ -3,14 +3,14 @@ package com.nitesh.trackmymedia.trackable;
 public class Series extends MediaItem{
     private Integer season;
 
-    public Series (String title, Integer season, int totalProgress, int currentProgress) {
-        super(title, totalProgress, currentProgress);
+    public Series (String title, Integer season, int totalProgress, int currentProgress, Trackable updateBehaviour) {
+        super(title, totalProgress, currentProgress, updateBehaviour);
         this.season = season;
 
 
     }
 
-    @Override
+    /*
     public String getStatus() {
         if (season != null && season > 0) {
             return "Season " + season + " - Episode " + currentProgress + " of " + totalProgress;
@@ -19,5 +19,6 @@ public class Series extends MediaItem{
 
         }
     }
+    */
     
 }

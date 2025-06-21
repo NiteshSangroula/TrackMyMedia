@@ -2,14 +2,15 @@ package com.nitesh.trackmymedia.trackable;
 
 public class Book extends MediaItem{
 
-    public Book(String title, int totalProgress, int currentProgress) {
-        super(title, totalProgress, currentProgress);
+    public Book(String title, int totalProgress, int currentProgress, Trackable updateBehaviour) {
+        super(title, totalProgress, currentProgress, updateBehaviour);
     }
 
 
-    @Override
+    /*
     public String getStatus() {
         return "Page "+currentProgress + " of "+ totalProgress;
     }
+    */
 
 }
