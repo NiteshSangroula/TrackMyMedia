@@ -3,9 +3,9 @@ package com.nitesh.trackmymedia;
 import java.util.Scanner;
 
 import com.nitesh.trackmymedia.manager.ProgressManager;
-import com.nitesh.trackmymedia.trackable.Anime;
-import com.nitesh.trackmymedia.trackable.Book;
-import com.nitesh.trackmymedia.trackable.Series;
+import com.nitesh.trackmymedia.implementations.Anime;
+import com.nitesh.trackmymedia.implementations.Book;
+import com.nitesh.trackmymedia.implementations.Series;
 
 public class Main {
 

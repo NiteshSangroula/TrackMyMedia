@@ -3,21 +3,22 @@ package com.nitesh.trackmymedia.manager;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.nitesh.trackmymedia.media.MediaItem;
 import com.nitesh.trackmymedia.trackable.Trackable;
 
 public class ProgressManager {
-    private List<Trackable> items;
+    private List<MediaItem> items;
 
     public ProgressManager() {
         items = new ArrayList<>();
     }
 
-    public void addItem(Trackable item) {
+    public void addItem(MediaItem item) {
         items.add(item);
     }
 
     public void showAllProgress() {
-        for (Trackable item: items) {
+        for (MediaItem item: items) {
             System.out.println(item.getTitle() + ":");
             System.out.println(item);
             System.out.println();
@@ -25,9 +26,9 @@ public class ProgressManager {
     }
 
     public void updateItem(String title, int progress) {
-        for (Trackable item: items) {
+        for (MediaItem item: items) {
             if (item.getTitle().equalsIgnoreCase(title)) {
-                item.updateProgress(progress);
+                item.performUpdateBehaviour(progress);
                 return;
             } 
 
