@@ -3,6 +3,7 @@ package com.nitesh.trackmymedia;
 import java.util.Scanner;
 
 import com.nitesh.trackmymedia.manager.ProgressManager;
+import com.nitesh.trackmymedia.storage.FileManager;
 import com.nitesh.trackmymedia.implementations.Anime;
 import com.nitesh.trackmymedia.implementations.Book;
 import com.nitesh.trackmymedia.implementations.Series;
@@ -12,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        ProgressManager manager = new ProgressManager();
+        ProgressManager manager = new ProgressManager(new FileManager());
         //manager.load();
 
         System.out.println("Welcome to TrackMyMedia!");

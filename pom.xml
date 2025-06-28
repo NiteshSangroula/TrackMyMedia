@@ -38,6 +38,20 @@
                     <mainClass>com.nitesh.trackmymedia.Main</mainClass>
                 </configuration>
             </plugin>
+            <!-- Plugin to create executable JAR -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <!-- CHANGE THIS TO YOUR MAIN CLASS -->
+                            <mainClass>com.nitesh.trackmymedia.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>

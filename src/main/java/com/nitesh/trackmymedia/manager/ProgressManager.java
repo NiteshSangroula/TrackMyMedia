@@ -1,27 +1,26 @@
 package com.nitesh.trackmymedia.manager;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.nitesh.trackmymedia.media.MediaItem;
 import com.nitesh.trackmymedia.storage.MediaManager;
-import com.nitesh.trackmymedia.trackable.Trackable;
 
 public class ProgressManager {
     private List<MediaItem> items;
-    //private MediaManager fileManager;
+    private MediaManager fileManager;
 
-    public ProgressManager() {
-        items = new ArrayList<>();
+    public ProgressManager(MediaManager fileManager) {
+        this.fileManager = fileManager;
+        this.items = fileManager.getAll();
     }
 
     public void addItem(MediaItem item) {
         items.add(item);
-        //fileManager.addItem(item);
+        fileManager.add(item);
     }
 
     public void showAllProgress() {
-        //items = fileManager.getAll();
+        items = fileManager.getAll();
         for (MediaItem item: items) {
             System.out.println(item.getTitle() + ":");
             System.out.println(item);
