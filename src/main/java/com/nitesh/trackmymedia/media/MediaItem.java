@@ -1,12 +1,17 @@
 package com.nitesh.trackmymedia.media;
 
+import java.io.Serializable;
+
 import com.nitesh.trackmymedia.trackable.Trackable;
+
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public abstract class MediaItem {
+@AllArgsConstructor
+public abstract class MediaItem implements Serializable{
     protected Trackable updateBehaviour;
     protected String title;
 
@@ -20,6 +25,10 @@ public abstract class MediaItem {
 
     public void performUpdateBehaviour(int progress) {
         updateBehaviour.updateProgress(progress);
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     @Override

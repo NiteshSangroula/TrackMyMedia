@@ -13,6 +13,7 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
         ProgressManager manager = new ProgressManager();
+        //manager.load();
 
         System.out.println("Welcome to TrackMyMedia!");
         System.out.println("Type `menu` to see available commands.\n");
@@ -63,41 +64,46 @@ public class Main {
     public static void handleAdd(Scanner sc, ProgressManager manager) {
         System.out.println("Add what? (book / anime / series): ");
         String type = sc.nextLine().trim().toLowerCase();
+        String title;
 
-        System.out.println("Enter title: ");
-        String title = sc.nextLine();
 
         switch (type) {
             case "book":
-                System.out.print("Current Page: ");
-                int currentPage = Integer.parseInt(sc.nextLine());
-                System.out.print("Total Page: ");
-                int totalPage = Integer.parseInt(sc.nextLine());
-                manager.addItem(new Book(title, totalPage, currentPage));
+            System.out.println("Enter title: ");
+            title = sc.nextLine();
+            System.out.print("Current Page: ");
+            int currentPage = Integer.parseInt(sc.nextLine());
+            System.out.print("Total Page: ");
+            int totalPage = Integer.parseInt(sc.nextLine());
+            manager.addItem(new Book(title, totalPage, currentPage));
             break;
 
             case "anime":
-                System.out.print("Season (or 0 if none): ");
-                int aSeason = Integer.parseInt(sc.nextLine());
-                System.out.print("Current Episode: ");
-                int aCurrentEpisode = Integer.parseInt(sc.nextLine());
-                System.out.print("Total Episode: ");
-                int aTotalEpisode = Integer.parseInt(sc.nextLine());
-                manager.addItem(new Anime(title, aSeason == 0 ? null: aSeason, aTotalEpisode, aCurrentEpisode));
+            System.out.println("Enter title: ");
+            title = sc.nextLine();
+            System.out.print("Season (or 0 if none): ");
+            int aSeason = Integer.parseInt(sc.nextLine());
+            System.out.print("Current Episode: ");
+            int aCurrentEpisode = Integer.parseInt(sc.nextLine());
+            System.out.print("Total Episode: ");
+            int aTotalEpisode = Integer.parseInt(sc.nextLine());
+            manager.addItem(new Anime(title, aSeason == 0 ? null: aSeason, aTotalEpisode, aCurrentEpisode));
             break;
 
             case "series":
-                System.out.print("Season (or 0 if none): ");
-                int sSeason = Integer.parseInt(sc.nextLine());
-                System.out.print("Current Episode: ");
-                int sCurrentEpisode = Integer.parseInt(sc.nextLine());
-                System.out.print("Total Episode: ");
-                int sTotalEpisode = Integer.parseInt(sc.nextLine());
-                manager.addItem(new Series(title, sSeason == 0 ? null: sSeason, sTotalEpisode , sCurrentEpisode));
+            System.out.println("Enter title: ");
+            title = sc.nextLine();
+            System.out.print("Season (or 0 if none): ");
+            int sSeason = Integer.parseInt(sc.nextLine());
+            System.out.print("Current Episode: ");
+            int sCurrentEpisode = Integer.parseInt(sc.nextLine());
+            System.out.print("Total Episode: ");
+            int sTotalEpisode = Integer.parseInt(sc.nextLine());
+            manager.addItem(new Series(title, sSeason == 0 ? null: sSeason, sTotalEpisode , sCurrentEpisode));
             break;
 
             default:
-                System.out.println("Unsupported Media Type!");
+            System.out.println("Unsupported Media Type!");
         }
 
     }

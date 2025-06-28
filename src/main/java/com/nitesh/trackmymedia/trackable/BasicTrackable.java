@@ -1,9 +1,6 @@
 package com.nitesh.trackmymedia.trackable;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 @AllArgsConstructor
 public class BasicTrackable extends AbstractTrackable {
