@@ -1,6 +1,6 @@
 package com.nitesh.trackmymedia.trackable;
 
-public interface Trackable {
+public interface Trackable{
 
     String getStatus();
     //void updateProgress(TrackableProgress progress);

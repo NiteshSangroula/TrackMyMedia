@@ -6,6 +6,6 @@ import com.nitesh.trackmymedia.trackable.BasicTrackable;
 public class Book extends MediaItem {
 
     public Book(String title, int totalProgress, int currentProgress) {
-        super(title, new BasicTrackable(currentProgress, totalProgress));
+        super(title, new BasicTrackable(totalProgress, currentProgress));
     }
 }

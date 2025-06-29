@@ -54,5 +54,9 @@ public class FileManager implements MediaManager{
             e.printStackTrace();
         }
     }
+    @Override
+    public void update(List<MediaItem> items) {
+        saveAll(items);
+    }
 
 }

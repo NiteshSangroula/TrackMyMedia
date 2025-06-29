@@ -23,7 +23,7 @@ public class SeasonTrackable extends AbstractTrackable {
 
     @Override
     public void updateProgress(int progress) {
-        //Some update season logic here
+        this.currentProgress = progress;
     }
 
     @Override

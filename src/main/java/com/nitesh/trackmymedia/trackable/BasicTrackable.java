@@ -4,8 +4,8 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class BasicTrackable extends AbstractTrackable {
-    public BasicTrackable(int currentProgress, int totalProgress) {
-        super(currentProgress, totalProgress);
+    public BasicTrackable(int totalProgress, int currentProgress) {
+        super(totalProgress, currentProgress);
     }
 
     @Override

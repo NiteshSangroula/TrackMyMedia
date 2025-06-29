@@ -14,7 +14,7 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
         ProgressManager manager = new ProgressManager(new FileManager());
-        //manager.load();
+        manager.load();
 
         System.out.println("Welcome to TrackMyMedia!");
         System.out.println("Type `menu` to see available commands.\n");
@@ -110,11 +110,11 @@ public class Main {
     }
 
     public static void handleUpdate(Scanner sc, ProgressManager manager) {
-        System.out.print("Enter title to update: ");
-        String title = sc.nextLine();
+        System.out.print("Enter number to update: ");
+        int id = Integer.parseInt(sc.nextLine());
         System.out.print("Enter new progress: ");
         int progress = Integer.parseInt(sc.nextLine());
-        manager.updateItem(title, progress);
+        manager.updateItem(id, progress);
     }
 }
 

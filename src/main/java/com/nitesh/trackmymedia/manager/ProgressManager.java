@@ -11,7 +11,10 @@ public class ProgressManager {
 
     public ProgressManager(MediaManager fileManager) {
         this.fileManager = fileManager;
-        this.items = fileManager.getAll();
+    }
+
+    public void load() {
+        items = fileManager.getAll();
     }
 
     public void addItem(MediaItem item) {
@@ -20,23 +23,18 @@ public class ProgressManager {
     }
 
     public void showAllProgress() {
-        items = fileManager.getAll();
+        int i = 0;
         for (MediaItem item: items) {
-            System.out.println(item.getTitle() + ":");
+            System.out.println(i+". "+item.getTitle() + ":");
             System.out.println(item);
             System.out.println();
+            i++;
         }
     }
 
-    public void updateItem(String title, int progress) {
-        for (MediaItem item: items) {
-            if (item.getTitle().equalsIgnoreCase(title)) {
-                item.performUpdateBehaviour(progress);
-                return;
-            } 
-
-        }
-        System.out.println("Item not found!");
+    public void updateItem(int id, int progress) {
+        items.get(id).performUpdateBehaviour(progress);
+        fileManager.update(items);
     }
     
 }
