@@ -6,17 +6,33 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.List;
 
-import com.nitesh.trackmymedia.media.MediaItem;
+public class FileManager<T> implements FileOperation<T> {
+    private String dirName;
+    private String fileName;
 
-public class FileManager implements MediaManager{
+    public FileManager(String dirName, String fileName) {
+        this.dirName = dirName;
+        this.fileName = fileName;
+    }
 
-    private static final String APP_NAME = "TrackMyMedia";
-    private static final String FILE_NAME = "mediaitems.ser";
+    @Override
+    public T get() throws ClassNotFoundException, IOException{
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(getStoragePath()));
+        return (T) ois.readObject();
 
-    private static String getStoragePath() {
+    }
+
+    @Override
+    public void set(T obj) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream( getStoragePath() ))) {
+            oos.writeObject(obj);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String getStoragePath() {
         String os = System.getProperty("os.name").toLowerCase();
         String baseDir;
 
@@ -28,35 +44,10 @@ public class FileManager implements MediaManager{
             baseDir = System.getProperty("user.home") + "/.local/share";
         }
 
-        String fullPath = baseDir + "/" + APP_NAME;
+        String fullPath = baseDir + "/" + dirName;
         new File(fullPath).mkdirs();  // ensure directory exists
-        return fullPath + "/" + FILE_NAME;
-    }
-    @Override
-    public List<MediaItem> getAll() {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(getStoragePath()))) {
-            return (List<MediaItem>) ois.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            return new ArrayList<>();
-        }
+        return fullPath + "/" + fileName;
     }
 
-    @Override
-    public void add(MediaItem item) {
-        List<MediaItem> items = getAll();
-        items.add(item);
-        saveAll(items);
-    }
-    private void saveAll(List<MediaItem> items) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream( getStoragePath() ))) {
-            oos.writeObject(items);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    @Override
-    public void update(List<MediaItem> items) {
-        saveAll(items);
-    }
-
+    
 }

@@ -1,19 +1,26 @@
 package com.nitesh.trackmymedia;
 
+import java.util.List;
 import java.util.Scanner;
 
 import com.nitesh.trackmymedia.manager.ProgressManager;
+import com.nitesh.trackmymedia.media.MediaItem;
 import com.nitesh.trackmymedia.storage.FileManager;
+import com.nitesh.trackmymedia.storage.MediaManager;
 import com.nitesh.trackmymedia.implementations.Anime;
 import com.nitesh.trackmymedia.implementations.Book;
 import com.nitesh.trackmymedia.implementations.Series;
 
 public class Main {
+    private static final String APP_NAME = "TrackMyMedia";
+    private static final String FILE_NAME = "mediaitems.ser";
+
 
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        ProgressManager manager = new ProgressManager(new FileManager());
+        ProgressManager manager = new ProgressManager(new MediaManager(
+            new FileManager<List<MediaItem>>(APP_NAME, FILE_NAME)));
         manager.load();
 
         System.out.println("Welcome to TrackMyMedia!");
@@ -131,7 +138,6 @@ public class Main {
             manager.deleteItem(id);
         } else if(confirm.equals("n")){
             System.out.println("Item not deleted!");
-
         } else {
             System.out.println("Item not found!");
         }
