@@ -36,5 +36,11 @@ public class ProgressManager {
         items.get(id).performUpdateBehaviour(progress);
         fileManager.update(items);
     }
+
+    public void deleteItem(int id) {
+        items.remove(id);
+        fileManager.update(items);
+
+    }
     
 }

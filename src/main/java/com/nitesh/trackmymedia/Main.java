@@ -37,6 +37,10 @@ public class Main {
                     handleUpdate(sc, manager);
                     break;
 
+                case "delete":
+                    handleDelete(sc, manager);
+                break;
+
                 case "show":
                     manager.showAllProgress();
                     break;
@@ -57,6 +61,7 @@ public class Main {
         System.out.println("Available Commands:");
         System.out.println(" add       - Add new media");
         System.out.println(" update    - Update progress");
+        System.out.println(" delete    - Delete an item");
         System.out.println(" show      - Show all tracked items");
         System.out.println(" exit      - Exit the app");
 
@@ -115,6 +120,21 @@ public class Main {
         System.out.print("Enter new progress: ");
         int progress = Integer.parseInt(sc.nextLine());
         manager.updateItem(id, progress);
+    }
+
+    public static void handleDelete(Scanner sc, ProgressManager manager) {
+        System.out.print("Enter number to delete: ");
+        int id = Integer.parseInt(sc.nextLine());
+        System.out.print("Confirm Delete(Y/n): ");
+        String confirm = sc.nextLine().toLowerCase();
+        if (confirm.equals("y")) {
+            manager.deleteItem(id);
+        } else if(confirm.equals("n")){
+            System.out.println("Item not deleted!");
+
+        } else {
+            System.out.println("Item not found!");
+        }
     }
 }
 
