@@ -6,6 +6,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class FileManager<T> implements FileOperation<T> {
     private String dirName;
@@ -16,11 +18,19 @@ public class FileManager<T> implements FileOperation<T> {
         this.fileName = fileName;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public T get() throws ClassNotFoundException, IOException{
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(getStoragePath()));
-        return (T) ois.readObject();
+    public T get() throws ClassNotFoundException, IOException {
+        Path path = Paths.get(getStoragePath());
+        File file = path.toFile();
 
+        if (!file.exists() || file.length() == 0) {
+            return null;
+        }
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+            return (T) ois.readObject();
+        }
     }
 
     @Override
@@ -49,5 +59,5 @@ public class FileManager<T> implements FileOperation<T> {
         return fullPath + "/" + fileName;
     }
 
-    
+
 }

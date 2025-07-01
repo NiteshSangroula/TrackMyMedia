@@ -1,6 +1,7 @@
 package com.nitesh.trackmymedia.storage;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -17,19 +18,25 @@ public class MediaManager implements MediaOperations{
     @Override
     public List<MediaItem> getAll() {
         try {
-            return fileHandler.get();
+            if (fileHandler.get() != null) {
+                List<MediaItem> items = new ArrayList<>(fileHandler.get());
+                return items;
+            } else {
+                return Collections.emptyList();
+            }
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
-            return Collections.emptyList();
+            return Collections.emptyList(); 
         }
     }
 
     @Override
     public void add(MediaItem item) {
-        List<MediaItem> items = getAll();
+        List<MediaItem> items = new ArrayList<>(getAll()); // ✅ mutable copy
         items.add(item);
         saveAll(items);
     }
+
     private void saveAll(List<MediaItem> items) {
         fileHandler.set(items);
     }

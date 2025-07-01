@@ -1,5 +1,6 @@
 package com.nitesh.trackmymedia.manager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.nitesh.trackmymedia.media.MediaItem;
@@ -11,15 +12,20 @@ public class ProgressManager {
 
     public ProgressManager(MediaManager fileManager) {
         this.fileManager = fileManager;
+        items = new ArrayList<>();
     }
 
     public void load() {
-        items = fileManager.getAll();
+        items = new ArrayList<>(fileManager.getAll());
     }
 
     public void addItem(MediaItem item) {
+        /*
         items.add(item);
         fileManager.add(item);
+        */
+        items.add(item);
+        fileManager.add(item); 
     }
 
     public void showAllProgress() {
@@ -40,7 +46,6 @@ public class ProgressManager {
     public void deleteItem(int id) {
         items.remove(id);
         fileManager.update(items);
-
     }
-    
+
 }
